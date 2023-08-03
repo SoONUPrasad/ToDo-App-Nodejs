@@ -1,0 +1,37 @@
+<div class="form_class">
+  <!-- Edit Section: Allows users to update their details -->
+  <h2 class="edit-page">EDIT YOUR DETAILS</h2>
+  <form action="/edit-todolist?id=<%= todolist._id %>" method="POST">
+    <!-- Description Input -->
+    <div class="desc_Class">
+      <!-- Input field for the task description -->
+      <input
+        type="text"
+        class="form-control"
+        name="desc"
+        value="<%= todolist.desc %>"
+      />
+    </div>
+    <!-- Category and Due Date Selection -->
+    <div class="select_and_input">
+      <!-- Dropdown menu for selecting task category -->
+      <select name="category" class="list-group">
+        <option value="<%= todolist.category %>" selected><%= todolist.category %></option>
+        <option value="Personal">Personal</option>
+        <option value="Work">Work</option>
+        <option value="Cleaning">Cleaning</option>
+        <option value="Others">Others</option>
+      </select>
+      <!-- Input field for setting the due date of the task -->
+      <input
+        type="date"
+        required
+        class="list-group"
+        name="dueDate"
+        value="<%= todolist.dueDate %>"
+      />
+    </div>
+    <!-- Update Button -->
+    <button type="submit" class="btn btn-success edit-button">Update</button>
+  </form>
+</div>

@@ -1,0 +1,57 @@
+<!-- Include CSS file for home page styles -->
+<link rel="stylesheet" href="/css/home.css">  
+
+<!-- Form for adding new ToDo tasks -->
+<div class="form_class">
+    <form action="/create_todo" method="POST">
+        <!-- Description Input -->
+        <div class="desc_Class">
+            <input type="textarea" required class="form-control" name="desc" placeholder="Add your ToDo"> 
+        </div>
+        <!-- Category and Due Date Selection -->
+        <div class="select_and_input">
+            <!-- Dropdown menu for selecting task category -->
+            <select name="category" class="list-group" required>
+                <option value="Personal" selected class="list-group-item active">Personal</option>
+                <option class="list-group-item">Work</option>
+                <option class="list-group-item">Cleaning</option>
+                <option class="list-group-item">Others</option>
+            </select>
+            <!-- Input field for setting the due date of the task -->
+            <input class="datesValues list-group" type="date" name="dateValue" placeholder="Due date dd/mm/yyyy" required>
+        </div>
+        <!-- Buttons for adding and deleting tasks -->
+        <button class="btn btn-light" id="submitButton" type="submit"><i class="fa fa-plus-square"></i> Add Task</button>
+        <button class="btn btn-danger" id="deleteButton" type="submit"><i class="fa fa-trash-o"></i> Delete Task</button>
+    </form>
+</div>
+
+<!-- Displaying the TODO lists -->
+<div>
+    <% for(let i of todoList) { let j=0; let newIds='descids'+j; %>
+        <div class="singleTask">
+            <!-- Checkbox for task deletion -->
+            <input type="checkbox" name="delechack" class="delechack" onclick="checkedOrNot()" uid = <%= i._id %> >
+            <div class="name_and_dueDate">
+                <!-- Task description -->
+                <p id=<%= i._id %>  uid = <%= i._id %> class="dispdsc"><%= i.desc %></p>
+                <!-- Due date of the task -->
+                <p id=<%= i._id + i.dueDate %> class="dueDate"  ><%= i.dueDate %></p>
+            </div>
+            <!-- Category of the task -->
+            <div class="catesec">
+                <%= i.category %>
+            </div>
+            <!-- Button to edit the task -->
+            <div class="btn btn-warning editClass"><a href="/editdata/?id=<%=i._id %>">Edit</a></div>
+        </div>
+        <% j++; } %>
+</div>
+
+<!-- JavaScript dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<!-- Custom JavaScript for the page -->
+<script src="/js/script.js"></script>
